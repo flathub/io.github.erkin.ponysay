@@ -1,6 +1,6 @@
 app-id: io.github.erkin.ponysay
 runtime: org.freedesktop.Platform
-runtime-version: '19.08'
+runtime-version: '20.08'
 sdk: org.freedesktop.Sdk
 command: /app/bin/ponysay
 modules:
@@ -14,9 +14,9 @@ modules:
         tag: 3.0.3
         commit: 5bcde318f714873a63189d2a750adb28a3f82839
       - type: file
-        path: "io.github.erkin.ponysay.appdata.xml"
+        path: "io.github.erkin.ponysay.metainfo.xml"
       - type: file
         path: ponysay_128x128.png
     post-install:
-      - install -Dm644 io.github.erkin.ponysay.appdata.xml /app/share/appdata/io.github.erkin.ponysay.appdata.xml
+      - install -Dm644 io.github.erkin.ponysay.metainfo.xml /app/share/appdata/io.github.erkin.ponysay.metainfo.xml
       - install -Dm644 ponysay_128x128.png /app/share/app-info/icons/flatpak/128x128/io.github.erkin.ponysay.png
