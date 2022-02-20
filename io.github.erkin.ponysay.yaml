@@ -1,13 +1,15 @@
 app-id: io.github.erkin.ponysay
 runtime: org.freedesktop.Platform
-runtime-version: '19.08'
+runtime-version: '21.08'
 sdk: org.freedesktop.Sdk
-command: /app/bin/ponysay
+command: /app/bin/ponysay.sh
 modules:
   - name: ponysay
     buildsystem: simple
     build-commands:
       - ./setup.py --prefix /app --freedom=partial install
+      - echo -e '#!/bin/sh\nPYTHONWARNINGS=ignore /app/bin/ponysay "$@"' > /app/bin/ponysay.sh
+      - chmod +x /app/bin/ponysay.sh
     sources:
       - type: git
         url: https://github.com/erkin/ponysay.git
