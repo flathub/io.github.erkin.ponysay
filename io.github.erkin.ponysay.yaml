@@ -2,7 +2,8 @@ app-id: io.github.erkin.ponysay
 runtime: org.freedesktop.Platform
 runtime-version: '21.08'
 sdk: org.freedesktop.Sdk
-command: /app/bin/ponysay.sh
+command: ponysay.sh
+finish-args: []
 modules:
   - name: ponysay
     buildsystem: simple
@@ -10,15 +11,17 @@ modules:
       - ./setup.py --prefix /app --freedom=partial install
       - echo -e '#!/bin/sh\nPYTHONWARNINGS=ignore /app/bin/ponysay "$@"' > /app/bin/ponysay.sh
       - chmod +x /app/bin/ponysay.sh
+      - install -Dm644 io.github.erkin.ponysay.appdata.xml /app/share/appdata/io.github.erkin.ponysay.appdata.xml
+      - install -Dm644 ponysay_128x128.png /app/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png
+      - install -Dm644 io.github.erkin.ponysay.desktop -t /app/share/applications/
     sources:
       - type: git
         url: https://github.com/erkin/ponysay.git
         tag: 3.0.3
         commit: 5bcde318f714873a63189d2a750adb28a3f82839
       - type: file
-        path: "io.github.erkin.ponysay.appdata.xml"
+        path: io.github.erkin.ponysay.appdata.xml
+      - type: file
+        path: io.github.erkin.ponysay.desktop
       - type: file
         path: ponysay_128x128.png
-    post-install:
-      - install -Dm644 io.github.erkin.ponysay.appdata.xml /app/share/appdata/io.github.erkin.ponysay.appdata.xml
-      - install -Dm644 ponysay_128x128.png /app/share/app-info/icons/flatpak/128x128/io.github.erkin.ponysay.png

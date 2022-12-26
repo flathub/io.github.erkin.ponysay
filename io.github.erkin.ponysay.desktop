@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Name=Ponsay
+Exec=ponysay.sh %u
+Type=Application
+Icon=io.github.erkin.ponysay
+Categories=Utility
+Terminal=true
